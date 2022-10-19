@@ -42,7 +42,7 @@ import OrderOverview from "layouts/dashboard/components/OrderOverview";
 import reportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
 import gradientLineChartData from "layouts/dashboard/data/gradientLineChartData";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Dashboard() {
   const { size } = typography;
@@ -242,7 +242,3 @@ export default Dashboard;
 //     </DashboardLayout>
 //   );
 // }
-Footer />
-    </DashboardLayout>
-  );
-}
