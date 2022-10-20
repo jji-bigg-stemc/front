@@ -43,6 +43,7 @@ import reportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
 import gradientLineChartData from "layouts/dashboard/data/gradientLineChartData";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import InstagramIcon from "@mui/icons-material/Instagram";
 
 function Dashboard() {
   const { size } = typography;
@@ -61,9 +62,7 @@ function Dashboard() {
                 percentage={{ color: "success", text: "+55%" }}
                 icon={{
                   color: "info",
-                  component: (
-                    <FontAwesomeIcon icon="fa-brands fa-google-drive" />
-                  ),
+                  fas: "fa-brands fa-google-drive",
                 }}
               />
             </Grid>
@@ -74,9 +73,7 @@ function Dashboard() {
                 percentage={{ color: "success", text: "+3%" }}
                 icon={{
                   color: "info",
-                  component: (
-                    <FontAwesomeIcon icon="fa-solid fa-thought-bubble" />
-                  ),
+                  fas: "fa-solid fa-thought-bubble",
                 }}
               />
             </Grid>
@@ -87,7 +84,7 @@ function Dashboard() {
                 percentage={{ color: "error", text: "-2%" }}
                 icon={{
                   color: "info",
-                  component: <FontAwesomeIcon icon="fa-brands fa-discord" />,
+                  fas: "discord",
                 }}
               />
             </Grid>
@@ -98,7 +95,7 @@ function Dashboard() {
                 percentage={{ color: "success", text: "+5%" }}
                 icon={{
                   color: "info",
-                  component: <FontAwesomeIcon icon="fa-brands fa-instagram" />,
+                  component: <InstagramIcon />,
                 }}
               />
             </Grid>
@@ -114,6 +111,14 @@ function Dashboard() {
             </Grid>
           </Grid>
         </SoftBox>
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={6} lg={8}>
+            <Projects />
+          </Grid>
+          <Grid item xs={12} md={6} lg={4}>
+            <OrderOverview />
+          </Grid>
+        </Grid>
       </SoftBox>
     </DashboardLayout>
   );

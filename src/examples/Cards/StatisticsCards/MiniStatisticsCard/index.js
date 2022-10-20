@@ -24,8 +24,16 @@ import Icon from "@mui/material/Icon";
 // Soft UI Dashboard React components
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-function MiniStatisticsCard({ bgColor, title, count, percentage, icon, direction }) {
+function MiniStatisticsCard({
+  bgColor,
+  title,
+  count,
+  percentage,
+  icon,
+  direction,
+}) {
   return (
     <Card>
       <SoftBox bgColor={bgColor} variant="gradient">
@@ -45,9 +53,13 @@ function MiniStatisticsCard({ bgColor, title, count, percentage, icon, direction
                   alignItems="center"
                   shadow="md"
                 >
-                  <Icon fontSize="small" color="inherit">
-                    {icon.component}
-                  </Icon>
+                  {icon.fas ? (
+                    <FontAwesomeIcon icon={icon.fas} />
+                  ) : (
+                    <Icon fontSize="small" color="inherit">
+                      {icon.component}
+                    </Icon>
+                  )}
                 </SoftBox>
               </Grid>
             ) : null}
@@ -68,7 +80,11 @@ function MiniStatisticsCard({ bgColor, title, count, percentage, icon, direction
                   color={bgColor === "white" ? "dark" : "white"}
                 >
                   {count}{" "}
-                  <SoftTypography variant="button" color={percentage.color} fontWeight="bold">
+                  <SoftTypography
+                    variant="button"
+                    color={percentage.color}
+                    fontWeight="bold"
+                  >
                     {percentage.text}
                   </SoftTypography>
                 </SoftTypography>
@@ -89,9 +105,13 @@ function MiniStatisticsCard({ bgColor, title, count, percentage, icon, direction
                   alignItems="center"
                   shadow="md"
                 >
-                  <Icon fontSize="small" color="inherit">
-                    {icon.component}
-                  </Icon>
+                  {icon.fas ? (
+                    <FontAwesomeIcon icon={icon.fas} />
+                  ) : (
+                    <Icon fontSize="small" color="inherit">
+                      {icon.component}
+                    </Icon>
+                  )}
                 </SoftBox>
               </Grid>
             ) : null}
@@ -147,8 +167,17 @@ MiniStatisticsCard.propTypes = {
     text: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   }),
   icon: PropTypes.shape({
-    color: PropTypes.oneOf(["primary", "secondary", "info", "success", "warning", "error", "dark"]),
-    component: PropTypes.node.isRequired,
+    color: PropTypes.oneOf([
+      "primary",
+      "secondary",
+      "info",
+      "success",
+      "warning",
+      "error",
+      "dark",
+    ]),
+    component: PropTypes.node,
+    fas: PropTypes.node,
   }).isRequired,
   direction: PropTypes.oneOf(["right", "left"]),
 };

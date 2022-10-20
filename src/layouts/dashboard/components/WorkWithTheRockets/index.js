@@ -36,7 +36,10 @@ function WorkWithTheRockets() {
           px={2}
           borderRadius="lg"
           sx={{
-            backgroundImage: ({ functions: { linearGradient, rgba }, palette: { gradients } }) =>
+            backgroundImage: ({
+              functions: { linearGradient, rgba },
+              palette: { gradients },
+            }) =>
               `${linearGradient(
                 rgba(gradients.dark.main, 0.8),
                 rgba(gradients.dark.state, 0.8)
@@ -46,13 +49,13 @@ function WorkWithTheRockets() {
         >
           <SoftBox mb={3} pt={1}>
             <SoftTypography variant="h5" color="white" fontWeight="bold">
-              Work with the rockets
+              From the STEM C
             </SoftTypography>
           </SoftBox>
           <SoftBox mb={2}>
             <SoftTypography variant="body2" color="white">
-              Wealth creation is an evolutionarily recent positive-sum game. It is all about who
-              take the opportunity first.
+              No current events from the STEM C is currently scheduled. Check
+              back later.
             </SoftTypography>
           </SoftBox>
           <SoftTypography

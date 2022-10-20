@@ -34,17 +34,21 @@ function BuildByDevelopers() {
           <Grid item xs={12} lg={6}>
             <SoftBox display="flex" flexDirection="column" height="100%">
               <SoftBox pt={1} mb={0.5}>
-                <SoftTypography variant="body2" color="text" fontWeight="medium">
-                  Build by developers
+                <SoftTypography
+                  variant="body2"
+                  color="text"
+                  fontWeight="medium"
+                >
+                  Upcoming Event
                 </SoftTypography>
               </SoftBox>
               <SoftTypography variant="h5" fontWeight="bold" gutterBottom>
-                Soft UI Dashboard
+                No Events Scheduled
               </SoftTypography>
               <SoftBox mb={6}>
                 <SoftTypography variant="body2" color="text">
-                  From colors, cards, typography to complex elements, you will find the full
-                  documentation.
+                  Add a new event to your calendar and get notified when the it
+                  starts. The most recent will be displayed here.
                 </SoftTypography>
               </SoftBox>
               <SoftTypography
@@ -63,15 +67,17 @@ function BuildByDevelopers() {
                   "& .material-icons-round": {
                     fontSize: "1.125rem",
                     transform: `translate(2px, -0.5px)`,
-                    transition: "transform 0.2s cubic-bezier(0.34,1.61,0.7,1.3)",
+                    transition:
+                      "transform 0.2s cubic-bezier(0.34,1.61,0.7,1.3)",
                   },
 
-                  "&:hover .material-icons-round, &:focus  .material-icons-round": {
-                    transform: `translate(6px, -0.5px)`,
-                  },
+                  "&:hover .material-icons-round, &:focus  .material-icons-round":
+                    {
+                      transform: `translate(6px, -0.5px)`,
+                    },
                 }}
               >
-                Read More
+                See All
                 <Icon sx={{ fontWeight: "bold" }}>arrow_forward</Icon>
               </SoftTypography>
             </SoftBox>
@@ -96,7 +102,13 @@ function BuildByDevelopers() {
                 width="100%"
                 height="100%"
               />
-              <SoftBox component="img" src={rocketWhite} alt="rocket" width="100%" pt={3} />
+              <SoftBox
+                component="img"
+                src={rocketWhite}
+                alt="rocket"
+                width="100%"
+                pt={3}
+              />
             </SoftBox>
           </Grid>
         </Grid>

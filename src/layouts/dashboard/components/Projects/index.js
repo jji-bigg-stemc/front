@@ -53,20 +53,28 @@ function Projects() {
       open={Boolean(menu)}
       onClose={closeMenu}
     >
-      <MenuItem onClick={closeMenu}>Action</MenuItem>
+      <MenuItem onClick={closeMenu}>In Progress</MenuItem>
+      <MenuItem onClick={closeMenu}>Edit</MenuItem>
+      <MenuItem onClick={closeMenu}>Delete</MenuItem>
+      {/* <MenuItem onClick={closeMenu}>Action</MenuItem>
       <MenuItem onClick={closeMenu}>Another action</MenuItem>
-      <MenuItem onClick={closeMenu}>Something else</MenuItem>
+      <MenuItem onClick={closeMenu}>Something else</MenuItem> */}
     </Menu>
   );
 
   return (
     <Card>
-      <SoftBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
+      <SoftBox
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        p={3}
+      >
         <SoftBox>
           <SoftTypography variant="h6" gutterBottom>
-            Projects
+            To Do List
           </SoftTypography>
-          <SoftBox display="flex" alignItems="center" lineHeight={0}>
+          {/* <SoftBox display="flex" alignItems="center" lineHeight={0}>
             <Icon
               sx={{
                 fontWeight: "bold",
@@ -79,10 +87,14 @@ function Projects() {
             <SoftTypography variant="button" fontWeight="regular" color="text">
               &nbsp;<strong>30 done</strong> this month
             </SoftTypography>
-          </SoftBox>
+          </SoftBox> */}
         </SoftBox>
         <SoftBox color="text" px={2}>
-          <Icon sx={{ cursor: "pointer", fontWeight: "bold" }} fontSize="small" onClick={openMenu}>
+          <Icon
+            sx={{ cursor: "pointer", fontWeight: "bold" }}
+            fontSize="small"
+            onClick={openMenu}
+          >
             more_vert
           </Icon>
         </SoftBox>
