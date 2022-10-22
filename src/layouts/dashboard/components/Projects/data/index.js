@@ -46,10 +46,6 @@ export default function data() {
         />
       </Tooltip>
     ));
-  // task initiator
-  // participants
-  // time estimate
-  // urgency
 
   return {
     columns: [

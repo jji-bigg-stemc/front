@@ -18,14 +18,22 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import App from "App";
 
+// redux
+import { Provider } from "react-redux";
+import configureStore from "configureStore";
+
 // Soft UI Dashboard React Context Provider
 import { SoftUIControllerProvider } from "context";
 
+const store = configureStore();
+
 ReactDOM.render(
   <BrowserRouter>
-    <SoftUIControllerProvider>
-      <App />
-    </SoftUIControllerProvider>
+    <Provider store={store}>
+      <SoftUIControllerProvider>
+        <App />
+      </SoftUIControllerProvider>
+    </Provider>
   </BrowserRouter>,
   document.getElementById("root")
 );

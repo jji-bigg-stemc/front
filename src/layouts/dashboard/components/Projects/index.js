@@ -30,9 +30,11 @@ import Table from "examples/Tables/Table";
 
 // Data
 import data from "layouts/dashboard/components/Projects/data";
+import { useSelector } from "react-redux";
 
 function Projects() {
-  const { columns, rows } = data();
+  const { columns } = data();
+  const rows = useSelector((state) => state.todos);
   const [menu, setMenu] = useState(null);
 
   const openMenu = ({ currentTarget }) => setMenu(currentTarget);
