@@ -1,3 +1,5 @@
+// the testing data set for the formats of the data in the table
+
 // @mui material components
 import Tooltip from "@mui/material/Tooltip";
 
@@ -20,8 +22,8 @@ import team3 from "assets/images/team-3.jpg";
 import team4 from "assets/images/team-4.jpg";
 
 export default function data() {
-  const avatars = (members) =>
-    members.map(([image, name]) => (
+  const avatars = (participants) =>
+    participants.map(([image, name]) => (
       <Tooltip key={name} title={name} placeholder="bottom">
         <SoftAvatar
           src={image}
@@ -44,19 +46,23 @@ export default function data() {
         />
       </Tooltip>
     ));
+  // task initiator
+  // participants
+  // time estimate
+  // urgency
 
   return {
     columns: [
-      { name: "companies", align: "left" },
-      { name: "members", align: "left" },
-      { name: "budget", align: "center" },
-      { name: "completion", align: "center" },
+      { name: "task initiator", align: "left" },
+      { name: "participants", align: "left" },
+      { name: "time estimate", align: "center" },
+      { name: "urgency", align: "center" },
     ],
 
     rows: [
       {
-        companies: [logoXD, "Soft UI XD Version"],
-        members: (
+        "task initiator": [logoXD, "Soft UI XD Version"],
+        participants: (
           <SoftBox display="flex" py={1}>
             {avatars([
               [team1, "Ryan Tompson"],
@@ -66,20 +72,25 @@ export default function data() {
             ])}
           </SoftBox>
         ),
-        budget: (
+        "time estimate": (
           <SoftTypography variant="caption" color="text" fontWeight="medium">
             $14,000
           </SoftTypography>
         ),
-        completion: (
+        urgency: (
           <SoftBox width="8rem" textAlign="left">
-            <SoftProgress value={60} color="info" variant="gradient" label={false} />
+            <SoftProgress
+              value={60}
+              color="info"
+              variant="gradient"
+              label={false}
+            />
           </SoftBox>
         ),
       },
       {
-        companies: [logoAtlassian, "Add Progress Track"],
-        members: (
+        "task initiator": [logoAtlassian, "Add Progress Track"],
+        participants: (
           <SoftBox display="flex" py={1}>
             {avatars([
               [team2, "Romina Hadid"],
@@ -87,20 +98,25 @@ export default function data() {
             ])}
           </SoftBox>
         ),
-        budget: (
+        "time estimate": (
           <SoftTypography variant="caption" color="text" fontWeight="medium">
             $3,000
           </SoftTypography>
         ),
-        completion: (
+        urgency: (
           <SoftBox width="8rem" textAlign="left">
-            <SoftProgress value={10} color="info" variant="gradient" label={false} />
+            <SoftProgress
+              value={10}
+              color="info"
+              variant="gradient"
+              label={false}
+            />
           </SoftBox>
         ),
       },
       {
-        companies: [logoSlack, "Fix Platform Errors"],
-        members: (
+        "task initiator": [logoSlack, "Fix Platform Errors"],
+        participants: (
           <SoftBox display="flex" py={1}>
             {avatars([
               [team1, "Ryan Tompson"],
@@ -108,20 +124,25 @@ export default function data() {
             ])}
           </SoftBox>
         ),
-        budget: (
+        "time estimate": (
           <SoftTypography variant="caption" color="text" fontWeight="medium">
             Not set
           </SoftTypography>
         ),
-        completion: (
+        urgency: (
           <SoftBox width="8rem" textAlign="left">
-            <SoftProgress value={100} color="success" variant="gradient" label={false} />
+            <SoftProgress
+              value={100}
+              color="success"
+              variant="gradient"
+              label={false}
+            />
           </SoftBox>
         ),
       },
       {
-        companies: [logoSpotify, "Launch our Mobile App"],
-        members: (
+        "task initiator": [logoSpotify, "Launch our Mobile App"],
+        participants: (
           <SoftBox display="flex" py={1}>
             {avatars([
               [team4, "Jessica Doe"],
@@ -131,38 +152,48 @@ export default function data() {
             ])}
           </SoftBox>
         ),
-        budget: (
+        "time estimate": (
           <SoftTypography variant="caption" color="text" fontWeight="medium">
             $20,500
           </SoftTypography>
         ),
-        completion: (
+        urgency: (
           <SoftBox width="8rem" textAlign="left">
-            <SoftProgress value={100} color="success" variant="gradient" label={false} />
+            <SoftProgress
+              value={100}
+              color="success"
+              variant="gradient"
+              label={false}
+            />
           </SoftBox>
         ),
       },
       {
-        companies: [logoJira, "Add the New Pricing Page"],
-        members: (
+        "task initiator": [logoJira, "Add the New Pricing Page"],
+        participants: (
           <SoftBox display="flex" py={1}>
             {avatars([[team4, "Jessica Doe"]])}
           </SoftBox>
         ),
-        budget: (
+        "time estimate": (
           <SoftTypography variant="caption" color="text" fontWeight="medium">
             $500
           </SoftTypography>
         ),
-        completion: (
+        urgency: (
           <SoftBox width="8rem" textAlign="left">
-            <SoftProgress value={25} color="info" variant="gradient" label={false} />
+            <SoftProgress
+              value={25}
+              color="info"
+              variant="gradient"
+              label={false}
+            />
           </SoftBox>
         ),
       },
       {
-        companies: [logoInvesion, "Redesign New Online Shop"],
-        members: (
+        "task initiator": [logoInvesion, "Redesign New Online Shop"],
+        participants: (
           <SoftBox display="flex" py={1}>
             {avatars([
               [team1, "Ryan Tompson"],
@@ -170,14 +201,19 @@ export default function data() {
             ])}
           </SoftBox>
         ),
-        budget: (
+        "time estimate": (
           <SoftTypography variant="caption" color="text" fontWeight="medium">
             $2,000
           </SoftTypography>
         ),
-        completion: (
+        urgency: (
           <SoftBox width="8rem" textAlign="left">
-            <SoftProgress value={40} color="info" variant="gradient" label={false} />
+            <SoftProgress
+              value={40}
+              color="info"
+              variant="gradient"
+              label={false}
+            />
           </SoftBox>
         ),
       },
