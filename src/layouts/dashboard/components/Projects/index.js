@@ -29,11 +29,15 @@ import SoftTypography from "components/SoftTypography";
 import Table from "examples/Tables/Table";
 
 // Data
-import data from "layouts/dashboard/components/Projects/data";
 import { useSelector } from "react-redux";
 
 function Projects() {
-  const { columns } = data();
+  const columns = [
+    { name: "task initiator", align: "left" },
+    { name: "participants", align: "left" },
+    { name: "time estimate", align: "center" },
+    { name: "urgency", align: "center" },
+  ];
   const rows = useSelector((state) => state.todos);
   const [menu, setMenu] = useState(null);
 
