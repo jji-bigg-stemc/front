@@ -14,7 +14,8 @@ export default (state = initialState, { type, payload }) => {
     case CHANGE_TODO:
       return state.map((todo) => {
         if (todo.id === payload.id) {
-          return { ...todo, ...payload };
+          const { key, val } = payload;
+          return { ...todo, key: val };
         }
         return todo;
       });
