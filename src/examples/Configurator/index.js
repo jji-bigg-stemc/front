@@ -42,12 +42,24 @@ import {
   setFixedNavbar,
   setSidenavColor,
 } from "context";
+import { useDispatch } from "react-redux";
+import { sidenav } from "middleware/actions/configurator.action";
 
 function Configurator() {
-  const [controller, dispatch] = useSoftUIController();
-  const { openConfigurator, transparentSidenav, fixedNavbar, sidenavColor } = controller;
+  const [controller, dispatchController] = useSoftUIController();
+  const { openConfigurator, transparentSidenav, fixedNavbar, sidenavColor } =
+    controller;
   const [disabled, setDisabled] = useState(false);
-  const sidenavColors = ["primary", "dark", "info", "success", "warning", "error"];
+  const dispatch = useDispatch();
+
+  const sidenavColors = [
+    "primary",
+    "dark",
+    "info",
+    "success",
+    "warning",
+    "error",
+  ];
 
   // Use the useEffect hook to change the button state for the sidenav type based on window size.
   useEffect(() => {
@@ -66,10 +78,14 @@ function Configurator() {
     return () => window.removeEventListener("resize", handleDisabled);
   }, []);
 
-  const handleCloseConfigurator = () => setOpenConfigurator(dispatch, false);
-  const handleTransparentSidenav = () => setTransparentSidenav(dispatch, true);
-  const handleWhiteSidenav = () => setTransparentSidenav(dispatch, false);
-  const handleFixedNavbar = () => setFixedNavbar(dispatch, !fixedNavbar);
+  const handleCloseConfigurator = () =>
+    setOpenConfigurator(dispatchController, false);
+  const handleTransparentSidenav = () =>
+    setTransparentSidenav(dispatchController, true);
+  const handleWhiteSidenav = () =>
+    setTransparentSidenav(dispatchController, false);
+  const handleFixedNavbar = () =>
+    setFixedNavbar(dispatchController, !fixedNavbar);
 
   // sidenav type buttons styles
   const sidenavTypeButtonsStyles = ({
@@ -95,14 +111,19 @@ function Configurator() {
         px={3}
       >
         <SoftBox>
-          <SoftTypography variant="h5">Soft UI Configurator</SoftTypography>
+          <SoftTypography variant="h5">
+            App Appearance Configurator
+          </SoftTypography>
           <SoftTypography variant="body2" color="text">
-            See our dashboard options.
+            Customize your experience!
           </SoftTypography>
         </SoftBox>
 
         <Icon
-          sx={({ typography: { size, fontWeightBold }, palette: { dark } }) => ({
+          sx={({
+            typography: { size, fontWeightBold },
+            palette: { dark },
+          }) => ({
             fontSize: `${size.md} !important`,
             fontWeight: `${fontWeightBold} !important`,
             stroke: dark.main,
@@ -126,7 +147,11 @@ function Configurator() {
             {sidenavColors.map((color) => (
               <IconButton
                 key={color}
-                sx={({ borders: { borderWidth }, palette: { white, dark }, transitions }) => ({
+                sx={({
+                  borders: { borderWidth },
+                  palette: { white, dark },
+                  transitions,
+                }) => ({
                   width: "24px",
                   height: "24px",
                   padding: 0,
@@ -136,8 +161,14 @@ function Configurator() {
                     easing: transitions.easing.sharp,
                     duration: transitions.duration.shorter,
                   }),
-                  backgroundImage: ({ functions: { linearGradient }, palette: { gradients } }) =>
-                    linearGradient(gradients[color].main, gradients[color].state),
+                  backgroundImage: ({
+                    functions: { linearGradient },
+                    palette: { gradients },
+                  }) =>
+                    linearGradient(
+                      gradients[color].main,
+                      gradients[color].state
+                    ),
 
                   "&:not(:last-child)": {
                     mr: 1,
@@ -147,7 +178,10 @@ function Configurator() {
                     borderColor: dark.main,
                   },
                 })}
-                onClick={() => setSidenavColor(dispatch, color)}
+                onClick={() => {
+                  setSidenavColor(dispatchController, color);
+                  dispatch(sidenav(color));
+                }}
               />
             ))}
           </SoftBox>
@@ -196,7 +230,7 @@ function Configurator() {
           <Switch checked={fixedNavbar} onChange={handleFixedNavbar} />
         </SoftBox>
 
-        <Divider />
+        {/* <Divider />
 
         <SoftBox mt={3} mb={2}>
           <SoftBox mb={2}>
@@ -265,7 +299,7 @@ function Configurator() {
               &nbsp; Share
             </SoftButton>
           </SoftBox>
-        </SoftBox>
+        </SoftBox> */}
       </SoftBox>
     </ConfiguratorRoot>
   );
