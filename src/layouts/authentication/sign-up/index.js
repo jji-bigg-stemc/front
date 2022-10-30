@@ -25,7 +25,7 @@ import Checkbox from "@mui/material/Checkbox";
 // Soft UI Dashboard React components
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
-import SoftInput from "components/SoftInput";
+import SoftInputField from "components/SoftInput/SoftInputField";
 import SoftButton from "components/SoftButton";
 
 // Authentication layout components
@@ -88,17 +88,6 @@ function SignUp() {
                 .
               </SoftTypography>
             </SoftBox> */}
-          {/* <SoftBox textAlign="center">
-              <SoftButton
-                type="submit"
-                variant="contained"
-                color="dark"
-                w="100%"
-                disabled={!agreement}
-              >
-                Create Account
-              </SoftButton>
-            </SoftBox> */}
         </SoftBox>
         <SoftBox textAlign="center" mb={2}>
           <SoftTypography variant="button" fontWeight="regular" color="text">
@@ -113,15 +102,25 @@ function SignUp() {
   );
 }
 
+// validation functions
+const required = (value) => (value ? undefined : "Required");
+const mustBeEmail = (value) =>
+  value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
+    ? "Invalid email address"
+    : required(value);
+const isSamePassword = (value, allValues) =>
+  value !== allValues.password ? "Passwords must match" : required(value);
+
 const RegistrationForm = (onSubmit) => (
   <Form
-    onSubmit={onSubmit}
+    onSubmit={(vals) => console.log(vals)}
     render={({ handleSubmit, form, submitting, pristine, values }) => (
       <form onSubmit={handleSubmit}>
         <SoftBox mb={2}>
           <Field
             name="name"
-            component={SoftInput}
+            component={SoftInputField}
+            validate={required}
             type="text"
             placeholder="Name"
           />
@@ -130,7 +129,8 @@ const RegistrationForm = (onSubmit) => (
         <SoftBox mb={2}>
           <Field
             name="email"
-            component={SoftInput}
+            component={SoftInputField}
+            validate={mustBeEmail}
             type="email"
             placeholder="Email"
           />
@@ -139,7 +139,7 @@ const RegistrationForm = (onSubmit) => (
         <SoftBox mb={2}>
           <Field
             name="password"
-            component={SoftInput}
+            component={SoftInputField}
             type="password"
             placeholder="Password"
           />
@@ -148,21 +148,22 @@ const RegistrationForm = (onSubmit) => (
         <SoftBox mb={2}>
           <Field
             name="confirmPassword"
-            component={SoftInput}
+            component={SoftInputField}
+            validate={isSamePassword}
             type="password"
             placeholder="Confirm Password"
           />
         </SoftBox>
 
-        <SoftBox textAlign="center">
+        <SoftBox textAlign="center" mt={4} mb={1}>
           <SoftButton
             type="submit"
             variant="contained"
             color="dark"
-            w="100%"
+            fullWidth
             disabled={submitting}
           >
-            Create Account
+            sign up
           </SoftButton>
         </SoftBox>
       </form>
