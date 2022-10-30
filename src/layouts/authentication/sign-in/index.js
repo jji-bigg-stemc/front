@@ -32,11 +32,31 @@ import CoverLayout from "layouts/authentication/components/CoverLayout";
 
 // Images
 import curved9 from "assets/images/curved-images/curved-6.jpg";
+import { useDispatch } from "react-redux";
+
+import isEmail from "validator/lib/isEmail";
+import { signin } from "middleware/actions/user.action";
 
 function SignIn() {
   const [rememberMe, setRememberMe] = useState(true);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const dispatch = useDispatch();
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
+
+  const submit = (e) => {
+    e.preventDefault();
+    if (!isEmail(email)) {
+      setError("Please enter a valid email");
+    } else if (password.length < 6) {
+      setError("Password must be at least 6 characters long");
+    } else {
+      dispatch(signin(email, password));
+    }
+  };
 
   return (
     <CoverLayout
@@ -47,19 +67,37 @@ function SignIn() {
       <SoftBox component="form" role="form">
         <SoftBox mb={2}>
           <SoftBox mb={1} ml={0.5}>
-            <SoftTypography component="label" variant="caption" fontWeight="bold">
+            <SoftTypography
+              component="label"
+              variant="caption"
+              fontWeight="bold"
+            >
               Email
             </SoftTypography>
           </SoftBox>
-          <SoftInput type="email" placeholder="Email" />
+          <SoftInput
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </SoftBox>
         <SoftBox mb={2}>
           <SoftBox mb={1} ml={0.5}>
-            <SoftTypography component="label" variant="caption" fontWeight="bold">
+            <SoftTypography
+              component="label"
+              variant="caption"
+              fontWeight="bold"
+            >
               Password
             </SoftTypography>
           </SoftBox>
-          <SoftInput type="password" placeholder="Password" />
+          <SoftInput
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </SoftBox>
         <SoftBox display="flex" alignItems="center">
           <Switch checked={rememberMe} onChange={handleSetRememberMe} />
@@ -73,7 +111,12 @@ function SignIn() {
           </SoftTypography>
         </SoftBox>
         <SoftBox mt={4} mb={1}>
-          <SoftButton variant="gradient" color="info" fullWidth>
+          <SoftButton
+            variant="gradient"
+            color="info"
+            fullWidth
+            onClick={submit}
+          >
             sign in
           </SoftButton>
         </SoftBox>

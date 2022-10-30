@@ -35,16 +35,26 @@ import Separator from "layouts/authentication/components/Separator";
 
 // Images
 import curved6 from "assets/images/curved-images/curved14.jpg";
+import { Field, Form } from "react-final-form";
+import { useDispatch } from "react-redux";
+import { signup } from "middleware/actions/user.action";
 
 function SignUp() {
+  const dispatch = useDispatch();
+
   const [agreement, setAgremment] = useState(true);
+
+  const onSubmit = (values) => {
+    console.log(values);
+    dispatch(signup(values));
+  };
 
   const handleSetAgremment = () => setAgremment(!agreement);
 
   return (
     <BasicLayout
       title="Welcome!"
-      description="Use these awesome forms to login or create new account in your project for free."
+      description="Use this as an initial landing point for creating a user instance. More information will be asked."
       image={curved6}
     >
       <Card>
@@ -58,61 +68,119 @@ function SignUp() {
         </SoftBox>
         <Separator />
         <SoftBox pt={2} pb={3} px={3}>
-          <SoftBox component="form" role="form">
-            <SoftBox mb={2}>
-              <SoftInput placeholder="Name" />
-            </SoftBox>
-            <SoftBox mb={2}>
-              <SoftInput type="email" placeholder="Email" />
-            </SoftBox>
-            <SoftBox mb={2}>
-              <SoftInput type="password" placeholder="Password" />
-            </SoftBox>
-            <SoftBox display="flex" alignItems="center">
-              <Checkbox checked={agreement} onChange={handleSetAgremment} />
+          <RegistrationForm onSubmit={onSubmit} />
+
+          {/* <SoftBox mb={2} display="flex" alignItems="center">
+              <Checkbox
+                color="primary"
+                checked={agreement}
+                onChange={handleSetAgremment}
+              />
               <SoftTypography
-                variant="button"
+                variant="caption"
                 fontWeight="regular"
-                onClick={handleSetAgremment}
-                sx={{ cursor: "poiner", userSelect: "none" }}
+                color="text"
               >
-                &nbsp;&nbsp;I agree the&nbsp;
+                I agree with the{" "}
+                <Link to="/pages/terms" target="_blank">
+                  Terms and Conditions
+                </Link>
+                .
               </SoftTypography>
-              <SoftTypography
-                component="a"
-                href="#"
-                variant="button"
-                fontWeight="bold"
-                textGradient
+            </SoftBox> */}
+          {/* <SoftBox textAlign="center">
+              <SoftButton
+                type="submit"
+                variant="contained"
+                color="dark"
+                w="100%"
+                disabled={!agreement}
               >
-                Terms and Conditions
-              </SoftTypography>
-            </SoftBox>
-            <SoftBox mt={4} mb={1}>
-              <SoftButton variant="gradient" color="dark" fullWidth>
-                sign up
+                Create Account
               </SoftButton>
-            </SoftBox>
-            <SoftBox mt={3} textAlign="center">
-              <SoftTypography variant="button" color="text" fontWeight="regular">
-                Already have an account?&nbsp;
-                <SoftTypography
-                  component={Link}
-                  to="/authentication/sign-in"
-                  variant="button"
-                  color="dark"
-                  fontWeight="bold"
-                  textGradient
-                >
-                  Sign in
-                </SoftTypography>
-              </SoftTypography>
-            </SoftBox>
-          </SoftBox>
+            </SoftBox> */}
+        </SoftBox>
+        <SoftBox textAlign="center" mb={2}>
+          <SoftTypography variant="button" fontWeight="regular" color="text">
+            Have an account?
+            <Link to="/auth/sign-in" className="text-dark ms-1">
+              Sign In
+            </Link>
+          </SoftTypography>
         </SoftBox>
       </Card>
     </BasicLayout>
   );
 }
 
+const RegistrationForm = (onSubmit) => (
+  <Form
+    onSubmit={onSubmit}
+    render={({ handleSubmit, form, submitting, pristine, values }) => (
+      <form onSubmit={handleSubmit}>
+        <SoftBox mb={2}>
+          <Field
+            name="name"
+            component={SoftInput}
+            type="text"
+            placeholder="Name"
+          />
+        </SoftBox>
+
+        <SoftBox mb={2}>
+          <Field
+            name="email"
+            component={SoftInput}
+            type="email"
+            placeholder="Email"
+          />
+        </SoftBox>
+
+        <SoftBox mb={2}>
+          <Field
+            name="password"
+            component={SoftInput}
+            type="password"
+            placeholder="Password"
+          />
+        </SoftBox>
+
+        <SoftBox mb={2}>
+          <Field
+            name="confirmPassword"
+            component={SoftInput}
+            type="password"
+            placeholder="Confirm Password"
+          />
+        </SoftBox>
+
+        <SoftBox textAlign="center">
+          <SoftButton
+            type="submit"
+            variant="contained"
+            color="dark"
+            w="100%"
+            disabled={submitting}
+          >
+            Create Account
+          </SoftButton>
+        </SoftBox>
+      </form>
+    )}
+  />
+);
+
 export default SignUp;
+
+// <SoftBox mb={2}>
+//   <SoftInput placeholder="Name" />
+// </SoftBox>
+// <SoftBox mb={2}>
+//   <SoftInput type="email" placeholder="Email" />
+// </SoftBox>
+// <SoftBox mb={2}>
+//   <SoftInput type="password" placeholder="Password" />
+// </SoftBox>
+// <SoftBox mb={2}>
+//   <SoftInput type="password" placeholder="Confirm Password" />
+// </SoftBox>
